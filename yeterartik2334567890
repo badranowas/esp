@@ -19,10 +19,10 @@ local ESP = {
 }
 
 
-local ESP = getgenv().ESP
+local ESP1 = getgenv().ESP
 
 -- // Update
-function ESP.UpdateESP()
+function ESP1.UpdateESP()
     -- // Make sure the circle exists
 
     ESP.Color = ESP.Colour
