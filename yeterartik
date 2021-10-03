@@ -1,9 +1,11 @@
+-- ESP SCRIPT
+local Color = Color3.fromRGB(255, 170, 0),
 local ESP = {
     Enabled = false,
     Boxes = false,
     BoxShift = CFrame.new(0,-1.5,0),
-	BoxSize = Vector3.new(4,6,0),
-    Color = Color3.fromRGB(255, 170, 0),
+    BoxSize = Vector3.new(4,6,0),
+    Color,
     FaceCamera = false,
     Names = true,
     TeamColor = true,
@@ -25,7 +27,7 @@ function ESP.UpdateESP()
     end
 
 
-    Color = ESP.FOVColour
+    Color = ESP.ESPColour
 
     -- // Return circle
     return ESP
@@ -41,49 +43,49 @@ local V3new = Vector3.new
 local WorldToViewportPoint = cam.WorldToViewportPoint
 
 local function Draw(obj, props)
-	local new = Drawing.new(obj)
-	
-	props = props or {}
-	for i,v in pairs(props) do
-		new[i] = v
-	end
-	return new
+    local new = Drawing.new(obj)
+    
+    props = props or {}
+    for i,v in pairs(props) do
+        new[i] = v
+    end
+    return new
 end
 
 function ESP:GetTeam(p)
-	local ov = self.Overrides.GetTeam
-	if ov then
-		return ov(p)
-	end
-	
-	return p and p.Team
+    local ov = self.Overrides.GetTeam
+    if ov then
+        return ov(p)
+    end
+    
+    return p and p.Team
 end
 
 function ESP:IsTeamMate(p)
     local ov = self.Overrides.IsTeamMate
-	if ov then
-		return ov(p)
+    if ov then
+        return ov(p)
     end
     
     return self:GetTeam(p) == self:GetTeam(plr)
 end
 
 function ESP:GetColor(obj)
-	local ov = self.Overrides.GetColor
-	if ov then
-		return ov(obj)
+    local ov = self.Overrides.GetColor
+    if ov then
+        return ov(obj)
     end
     local p = self:GetPlrFromChar(obj)
-	return p and self.TeamColor and p.Team and p.Team.TeamColor.Color or self.Color
+    return p and self.TeamColor and p.Team and p.Team.TeamColor.Color or self.Color
 end
 
 function ESP:GetPlrFromChar(char)
-	local ov = self.Overrides.GetPlrFromChar
-	if ov then
-		return ov(char)
-	end
-	
-	return plrs:GetPlayerFromCharacter(char)
+    local ov = self.Overrides.GetPlrFromChar
+    if ov then
+        return ov(char)
+    end
+    
+    return plrs:GetPlayerFromCharacter(char)
 end
 
 function ESP:Toggle(bool)
@@ -302,24 +304,24 @@ function ESP:Add(obj, options)
         Visible = self.Enabled and self.Boxes
     })
     box.Components["Name"] = Draw("Text", {
-		Text = box.Name,
-		Color = box.Color,
-		Center = true,
-		Outline = true,
+        Text = box.Name,
+        Color = box.Color,
+        Center = true,
+        Outline = true,
         Size = 19,
         Visible = self.Enabled and self.Names
-	})
-	box.Components["Distance"] = Draw("Text", {
-		Color = box.Color,
-		Center = true,
-		Outline = true,
+    })
+    box.Components["Distance"] = Draw("Text", {
+        Color = box.Color,
+        Center = true,
+        Outline = true,
         Size = 19,
         Visible = self.Enabled and self.Names
-	})
-	
-	box.Components["Tracer"] = Draw("Line", {
-		Thickness = ESP.Thickness,
-		Color = box.Color,
+    })
+    
+    box.Components["Tracer"] = Draw("Line", {
+        Thickness = ESP.Thickness,
+        Color = box.Color,
         Transparency = 1,
         Visible = self.Enabled and self.Tracers
     })
@@ -337,12 +339,12 @@ function ESP:Add(obj, options)
     end)
 
     local hum = obj:FindFirstChildOfClass("Humanoid")
-	if hum then
+    if hum then
         hum.Died:Connect(function()
             if ESP.AutoRemove ~= false then
                 box:Remove()
             end
-		end)
+        end)
     end
 
     return box
