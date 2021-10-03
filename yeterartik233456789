@@ -24,9 +24,6 @@ local ESP = getgenv().ESP
 -- // Update
 function ESP.UpdateESP()
     -- // Make sure the circle exists
-    if not (ESP) then
-        return
-    end
 
     ESP.Color = ESP.Colour
 
