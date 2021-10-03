@@ -1,11 +1,11 @@
 -- ESP SCRIPT
-local Color = Color3.fromRGB(255, 170, 0)
+local Color = Color3.fromRGB(255, 170, 0),
 local ESP = {
     Enabled = false,
     Boxes = false,
     BoxShift = CFrame.new(0,-1.5,0),
     BoxSize = Vector3.new(4,6,0),
-    Color = Color3.fromRGB(255, 170, 0),
+    Color,
     FaceCamera = false,
     Names = true,
     TeamColor = true,
@@ -19,15 +19,18 @@ local ESP = {
 }
 
 
+local ESP = getgenv().ESP
+
+ESP.Color = ESP
+
 -- // Update
-function ESP.UpdateESP()
+function Aiming.UpdateFOV()
     -- // Make sure the circle exists
     if not (ESP) then
         return
     end
 
-
-    Color = ESP.ESPColour
+    ESP.Color = ESP.Colour
 
     -- // Return circle
     return ESP
