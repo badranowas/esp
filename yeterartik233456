@@ -1,5 +1,5 @@
 -- ESP SCRIPT
-local Color = Color3.fromRGB(255, 170, 0),
+local Color = Color3.fromRGB(255, 170, 0)
 local ESP = {
     Enabled = false,
     Boxes = false,
