@@ -25,15 +25,6 @@ local mouse = plr:GetMouse()
 local V3new = Vector3.new
 local WorldToViewportPoint = cam.WorldToViewportPoint
 
-
-function Aiming.UpdateESP()
-    if not (ESP) then
-        return
-    end
-    circle.Color = Color
-    return ESP
-end
-
 local function Draw(obj, props)
 	local new = Drawing.new(obj)
 	
