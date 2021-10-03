@@ -24,7 +24,7 @@ local ESP = getgenv().ESP
 ESP.Color = ESP
 
 -- // Update
-function Aiming.UpdateFOV()
+function ESP.UpdateESP()
     -- // Make sure the circle exists
     if not (ESP) then
         return
